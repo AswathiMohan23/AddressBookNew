@@ -8,8 +8,7 @@ public class AddressBookMain {
     static Details person1 = new Details("tom", "john", "Trivandrum", "1234", "912345678");
     static Details person2 = new Details("Anna", "Maria", "Bangalore", "1564", "923456781");
     static Details person3 = new Details("Linda", "Thomas", "Kozhikode", "1564", "923456781");
-    static int count=0;
-    static ArrayList<String> addressBook=new ArrayList<>();
+    static ArrayList<String> multipleAddressBook=new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book");
@@ -20,7 +19,11 @@ public class AddressBookMain {
 
         switch (option) {
             case 1:
-                enterTheDetails();
+                System.out.println("enter the no of addressBooks needed : ");
+                int limit= sc.nextInt();
+                for(int count=1;count<=limit;count++)
+                    enterTheDetails(count);
+                System.out.println("Multiple AddressBook : "+multipleAddressBook);
                 break;
             case 2:
                 System.out.println("select the name : ");
@@ -71,7 +74,7 @@ public class AddressBookMain {
     }
 
 
-    public static void enterTheDetails() {
+    public static void enterTheDetails(int count) {
         System.out.println("Enter the First name : ");
         String firstName = sc.next();
         System.out.println("Enter the 2nd name : ");
@@ -82,19 +85,19 @@ public class AddressBookMain {
         String zipCode = sc.next();
         System.out.println("Enter the mobile number : ");
         String mobileNumber = sc.next();
-        /*Details details = new Details(firstName, address, zipCode, mobileNumber, lastName);
-        System.out.println("Personal details : " + details.toString());*/
-        addingMultipleAddressBook(firstName,lastName,address,zipCode,mobileNumber);
+        addingMultipleAddressBook(count,firstName,lastName,address,zipCode,mobileNumber);
 
     }
 
-    public static void addingMultipleAddressBook(String firstName, String lastName, String address, String zipCode, String mobileNumber) {
-        count++;
+    public static void addingMultipleAddressBook(int count,String firstName, String lastName, String address, String zipCode, String mobileNumber) {
+        ArrayList<String> addressBook=new ArrayList<>();
         addressBook.add(firstName);
         addressBook.add(lastName);
         addressBook.add(address);
         addressBook.add(zipCode);
         addressBook.add(mobileNumber);
         System.out.println("AddressBook "+count+" : "+addressBook);
+        multipleAddressBook.add(String.valueOf(addressBook));
+
     }
 }
