@@ -8,7 +8,6 @@ public class AddressBookMain {
     static Details person1 = new Details("tom", "john", "Trivandrum", "1234", "912345678");
     static Details person2 = new Details("Anna", "Maria", "Bangalore", "1564", "923456781");
     static Details person3 = new Details("Linda", "Thomas", "Kozhikode", "1564", "923456781");
-    static ArrayList<String> multipleAddressBook=new ArrayList<>();
     static Dictionary dict = new Hashtable();
 
 
@@ -25,8 +24,7 @@ public class AddressBookMain {
                 int limit= sc.nextInt();
                 for(int count=1;count<=limit;count++)
                     enterTheDetails(count);
-                System.out.println("Multiple AddressBook : "+multipleAddressBook);
-                System.out.println("Dictionary AddressBook : "+dict);
+                System.out.println("\nDictionary of AddressBook : "+dict);
                 break;
             case 2:
                 System.out.println("select the name : ");
@@ -100,7 +98,6 @@ public class AddressBookMain {
         addressBook.add(zipCode);
         addressBook.add(mobileNumber);
         System.out.println("AddressBook "+count+" : "+addressBook);
-        multipleAddressBook.add(String.valueOf(addressBook));
         dict.put(count,addressBook);
 
 
