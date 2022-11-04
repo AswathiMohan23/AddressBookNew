@@ -95,6 +95,6 @@ public class AddressBookMain {
         addressBook.add(address);
         addressBook.add(zipCode);
         addressBook.add(mobileNumber);
-        System.out.println("AddressBook "+1+" : "+addressBook);
+        System.out.println("AddressBook "+count+" : "+addressBook);
     }
 }
