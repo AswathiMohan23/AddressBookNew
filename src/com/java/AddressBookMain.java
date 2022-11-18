@@ -1,8 +1,15 @@
 package com.java;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
+    static ArrayList<String> addressBook=new ArrayList<>();
+    static ArrayList<String> newAddressBook = new ArrayList<String>();
+    static ArrayList<String> nameList = new ArrayList<>();
+
+
+
 
     static Scanner sc = new Scanner(System.in);
     static Details person1 = new Details("tom", "john", "Trivandrum", "1234", "912345678");
@@ -80,26 +87,31 @@ public class AddressBookMain {
         String firstName = sc.next();
         System.out.println("Enter the 2nd name : ");
         String lastName = sc.next();
-        System.out.println("Enter the address : ");
-        String address = sc.next();
-        System.out.println("Enter the zipCode : ");
-        String zipCode = sc.next();
-        System.out.println("Enter the mobile number : ");
-        String mobileNumber = sc.next();
-        addingMultipleAddressBook(count,firstName,lastName,address,zipCode,mobileNumber);
+        if ((nameList.contains(firstName)) && (nameList.contains(lastName))) {
+            System.out.println("sorry try again the name already exists");
+        } else {
 
+            System.out.println("Enter the address : ");
+            String address = sc.next();
+            System.out.println("Enter the zipCode : ");
+            String zipCode = sc.next();
+            System.out.println("Enter the mobile number : ");
+            String mobileNumber = sc.next();
+            addingMultipleAddressBook(count, firstName, lastName, address, zipCode, mobileNumber);
+        }
     }
 
     public static void addingMultipleAddressBook(int count,String firstName, String lastName, String address, String zipCode, String mobileNumber) {
-        ArrayList<String> addressBook=new ArrayList<>();
-        addressBook.add(firstName);
-        addressBook.add(lastName);
-        addressBook.add(address);
-        addressBook.add(zipCode);
-        addressBook.add(mobileNumber);
-        System.out.println("AddressBook "+count+" : "+addressBook);
+        ArrayList<String> addressBook = new ArrayList<>();
+         addressBook.add(firstName);
+         addressBook.add(lastName);
+         addressBook.add(address);
+         addressBook.add(zipCode);
+         addressBook.add(mobileNumber);
+         System.out.println("AddressBook "+count+" : "+addressBook);
+         nameList.add(addressBook.get(0));
+         nameList.add(addressBook.get(1));
         dict.put(count,addressBook);
-
 
     }
 }
