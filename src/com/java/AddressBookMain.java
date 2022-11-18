@@ -100,7 +100,6 @@ public class AddressBookMain {
             addingMultipleAddressBook(count, firstName, lastName, address, zipCode, mobileNumber);
         }
     }
-
     public static void addingMultipleAddressBook(int count,String firstName, String lastName, String address, String zipCode, String mobileNumber) {
         ArrayList<String> addressBook = new ArrayList<>();
          addressBook.add(firstName);
@@ -112,6 +111,5 @@ public class AddressBookMain {
          nameList.add(addressBook.get(0));
          nameList.add(addressBook.get(1));
         dict.put(count,addressBook);
-
     }
 }
