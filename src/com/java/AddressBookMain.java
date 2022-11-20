@@ -147,7 +147,7 @@ public class AddressBookMain {
         System.out.println("\n========================================================= checkout the list of people from your city "+cityName+" ======================================================================");
         list.stream().filter(name -> name.contains(cityName)).forEach(System.out::println);
         int count= (int) list.stream().filter(name -> name.contains(cityName)).count();
-        System.out.println("Do u need to check using state name ?  \n\t\t\t1 : for yes\n\t\t\t2 : to count by city Name"+cityName+"\n\t\t\t3 : for No");
+        System.out.println("Do u need to check using state name ?  \n\t\t\t1 : for yes\n\t\t\t2 : to count by city Name "+cityName+"\n\t\t\t3 : for No");
         int option=sc.nextInt();
         switch (option){
             case 1 : searchingCity();
