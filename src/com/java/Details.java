@@ -16,8 +16,10 @@ public class Details {
         this.mobileNumber = mobileNumber;
         this.lastName = lastName;
     }
+    public Details() {}
 
-    public String getLastName() {
+
+        public String getLastName() {
         return lastName;
     }
 
