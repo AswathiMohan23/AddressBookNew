@@ -1,5 +1,6 @@
 package com.java;
 
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,9 +9,13 @@ public class AddressBookMain {
     static ArrayList<String> addressBook = new ArrayList<>();
     static ArrayList<String> newAddressBook = new ArrayList<String>();
     static Map<ArrayList, String> map = new HashMap<>();
-    static Map<ArrayList, String> mapDetails = new HashMap<>();
     static ArrayList<String> nameList = new ArrayList<>();
     static ArrayList<ArrayList> list=new ArrayList<>();
+    static Dictionary dict = new Hashtable();
+    static Dictionary stateDict = new Hashtable();
+    static Dictionary cityDict = new Hashtable();
+
+
 
 
 
@@ -18,13 +23,12 @@ public class AddressBookMain {
     static Details person1 = new Details("tom", "john", "Trivandrum", "1234", "912345678");
     static Details person2 = new Details("Anna", "Maria", "Bangalore", "1564", "923456781");
     static Details person3 = new Details("Linda", "Thomas", "Kozhikode", "1564", "923456781");
-    static Dictionary dict = new Hashtable();
 
 
     public static void main(String[] args) {
-        System.out.println("======================================= Welcome to Address Book =========================================");
+        System.out.println("\n======================================= Welcome to Address Book =========================================");
         System.out.println("\nchoose the option (1 or 2) which u need : " +
-                "\n1 : enter details from console\n2 : find a person by name\n" + "3 : delete details by using name\n");
+                "\n\t\t\t1 : enter details from console\n\t\t\t2 : find a person by name\n\t\t\t" + "3 : delete details by using name\n");
         int option = sc.nextInt();
         System.out.println("Address book contacts :\n\n" + person1.toString() + "\n" + person2.toString() + "\n" + person3.toString());
 
@@ -46,7 +50,7 @@ public class AddressBookMain {
                 byName = sc.next().toUpperCase();
                 delete(byName);
         }
-        searchingState();
+        searching();
     }
 
     public static void savedDetails(String name) {
@@ -96,47 +100,81 @@ public class AddressBookMain {
             System.out.println("sorry try again the name already exists");
         } else {
 
-            System.out.println("Enter the address : ");
-            String address = sc.next();
+            System.out.println("Enter the city : ");
+            String city = sc.next();
+            System.out.println("Enter the state : ");
+            String state = sc.next();
             System.out.println("Enter the zipCode : ");
             String zipCode = sc.next();
             System.out.println("Enter the mobile number : ");
             String mobileNumber = sc.next();
-            addingMultipleAddressBook(count, firstName, lastName, address, zipCode, mobileNumber);
+            addingMultipleAddressBook(count, firstName, lastName, city,state, zipCode, mobileNumber);
         }
     }
 
-    public static void addingMultipleAddressBook(int count, String firstName, String lastName, String address, String zipCode, String mobileNumber) {
+    public static void addingMultipleAddressBook(int count, String firstName, String lastName, String city,String state, String zipCode, String mobileNumber) {
         ArrayList<String> addressBook = new ArrayList<>();
         addressBook.add(firstName);
         addressBook.add(lastName);
-        addressBook.add(address);
+        addressBook.add(city);
+        addressBook.add(state);
         addressBook.add(zipCode);
         addressBook.add(mobileNumber);
-        Details details=new Details();
-        details.setFirstName(firstName);
-        details.setFirstName(lastName);
-        details.setAddress(address);
-        details.setAddress(zipCode);
-        details.setFirstName(mobileNumber);
         System.out.println("AddressBook " + count + " : " + addressBook);
         nameList.add(addressBook.get(0));
         nameList.add(addressBook.get(1));
        // mapDetails.put(addressBook,details.toString());
-        map.put(addressBook, address);
-        dict.put(count, addressBook);
+        map.put(addressBook, state);
+        dict.put(count, addressBook); // dictionary to add all the addressBooks
         list.add(addressBook);
+        stateDict.put(firstName,state);
+        cityDict.put(firstName,city);
+
+    }
+    public static void searching(){
+        System.out.println("\nHey to know the details of people from your place, enter the name of your state /city here \n\t\t\tclick 1 : for city\n\t\t\tclick 2 : for state\n");
+        int option = sc.nextInt();
+        switch (option){
+            case 1 : searchingCity();
+                break;
+            case 2 : searchingState();
+                break;
+        }
+
+    }
+
+    public static void searchingCity() {
+        System.out.println("Enter the name of the city : ");
+        String cityName=sc.next();
+        System.out.println("\n========================================================= checkout the list of people from your city "+cityName+" ======================================================================");
+
+        list.stream().filter(name -> name.contains(cityName)).forEach(System.out::println);
+        System.out.println("\nDo u need to check using state name ?  \n\t\t\t1 : for yes\n\t\t\t2 : for No");
+        int option=sc.nextInt();
+        switch (option){
+            case 1 : searchingState();
+                break;
+            case 2 :
+                System.out.println("ok you have chosen not to continue");
+                break;
+        }
+
     }
 
     public static void searchingState() {
-       System.out.println("\nHey to know the details of people from your place, enter the name of your state here \n=====> ");
-        String stateName = sc.next();
+        System.out.println("Enter the name of the state : ");
+        String stateName=sc.next();
         list.stream().filter(name -> name.contains(stateName)).forEach(System.out::println);
-        System.out.println("\n checkout the list of people from your place \n=====> ");
+        System.out.println("\n========================================================== checkout the list of people from your state "+stateName+" ============================================================ ");
+        System.out.println("Do u need to check using state name ?  \n\t\t\t1 : for yes\n\t\t\t2 : for No");
+        int option=sc.nextInt();
+        switch (option){
+            case 1 : searchingCity();
+                break;
+            case 2 :
+                System.out.println("ok you have chosen not to continue");
+                break;
         }
-
-        //List<String> stringList =addressBook.stream().filter(name -> addressBook.contains(stateName)).toList();
-
-
+        }
     }
 
