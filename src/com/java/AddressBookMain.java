@@ -2,8 +2,6 @@ package com.java;
 
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class AddressBookMain {
     static ArrayList<String> addressBook = new ArrayList<>();
@@ -147,34 +145,63 @@ public class AddressBookMain {
         System.out.println("Enter the name of the city : ");
         String cityName=sc.next();
         System.out.println("\n========================================================= checkout the list of people from your city "+cityName+" ======================================================================");
-
         list.stream().filter(name -> name.contains(cityName)).forEach(System.out::println);
-        System.out.println("\nDo u need to check using state name ?  \n\t\t\t1 : for yes\n\t\t\t2 : for No");
+        int count= (int) list.stream().filter(name -> name.contains(cityName)).count();
+        System.out.println("Do u need to check using state name ?  \n\t\t\t1 : for yes\n\t\t\t2 : to count by city Name"+cityName+"\n\t\t\t3 : for No");
         int option=sc.nextInt();
         switch (option){
-            case 1 : searchingState();
+            case 1 : searchingCity();
                 break;
-            case 2 :
+            case 2: countByCity(count,cityName);
+                break;
+            case 3 :
                 System.out.println("ok you have chosen not to continue");
                 break;
         }
-
     }
-
     public static void searchingState() {
         System.out.println("Enter the name of the state : ");
         String stateName=sc.next();
-        list.stream().filter(name -> name.contains(stateName)).forEach(System.out::println);
         System.out.println("\n========================================================== checkout the list of people from your state "+stateName+" ============================================================ ");
-        System.out.println("Do u need to check using state name ?  \n\t\t\t1 : for yes\n\t\t\t2 : for No");
+        list.stream().filter(name -> name.contains(stateName)).forEach(System.out::println);
+        int count= (int) list.stream().filter(name -> name.contains(stateName)).count();
+        System.out.println("Do u need to check using city name ?  \n\t\t\t1 : for yes\n\t\t\t2 : to count by state Name "+stateName+"\n\t\t\t3 : for No");
+        int option=sc.nextInt();
+        switch (option){
+            case 1 : searchingCity();
+                break;
+            case 2: countByState(count,stateName);
+                break;
+            case 3 :
+                System.out.println("ok you have chosen not to continue");
+                break;
+        }
+    }
+
+    public static void countByState(int count,String stateName) {
+        System.out.println("count by state "+stateName+" : "+count);
+        System.out.println("Do u need to check using city name ?  \n\t\t\t1 : for yes\n\t\t\t2 : for No");
         int option=sc.nextInt();
         switch (option){
             case 1 : searchingCity();
                 break;
             case 2 :
-                System.out.println("ok you have chosen not to continue");
-                break;
+                System.out.println("You have chosen not to continue");
         }
-        }
+
     }
+
+    public  static void countByCity(int count,String city){
+        System.out.println("count by city "+city+" : "+count);
+        System.out.println("Do u need to check using state name ?  \n\t\t\t1 : for yes\n\t\t\t2 : for No");
+        int option=sc.nextInt();
+        switch (option){
+            case 1 : searchingState();
+                break;
+            case 2 :
+                System.out.println("You have chosen not to continue");
+        }
+
+    }
+}
 
