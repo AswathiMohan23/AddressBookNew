@@ -2,16 +2,21 @@ package com.java;
 
 
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
-    static ArrayList<String> addressBook = new ArrayList<>();
-    static ArrayList<String> newAddressBook = new ArrayList<String>();
+    static int limit;
     static Map<ArrayList, String> map = new HashMap<>();
     static ArrayList<String> nameList = new ArrayList<>();
     static ArrayList<ArrayList> list=new ArrayList<>();
     static Dictionary dict = new Hashtable();
     static Dictionary stateDict = new Hashtable();
     static Dictionary cityDict = new Hashtable();
+    static List addressList = new ArrayList<>();
+    static TreeMap<String, ArrayList> addressMap = new TreeMap<>();
+
+
 
 
 
@@ -33,7 +38,7 @@ public class AddressBookMain {
         switch (option) {
             case 1:
                 System.out.println("\n\nenter the no of addressBooks needed : ");
-                int limit = sc.nextInt();
+                limit = sc.nextInt();
                 for (int count = 1; count <= limit; count++)
                     enterTheDetails(count);
                 System.out.println("\nDictionary of AddressBook : " + dict);
@@ -49,6 +54,7 @@ public class AddressBookMain {
                 delete(byName);
         }
         searching();
+        sort();
     }
 
     public static void savedDetails(String name) {
@@ -121,12 +127,14 @@ public class AddressBookMain {
         System.out.println("AddressBook " + count + " : " + addressBook);
         nameList.add(addressBook.get(0));
         nameList.add(addressBook.get(1));
-       // mapDetails.put(addressBook,details.toString());
         map.put(addressBook, state);
         dict.put(count, addressBook); // dictionary to add all the addressBooks
         list.add(addressBook);
         stateDict.put(firstName,state);
         cityDict.put(firstName,city);
+        addressMap.put(firstName,addressBook);
+
+
 
     }
     public static void searching(){
@@ -188,7 +196,6 @@ public class AddressBookMain {
             case 2 :
                 System.out.println("You have chosen not to continue");
         }
-
     }
 
     public  static void countByCity(int count,String city){
@@ -201,7 +208,17 @@ public class AddressBookMain {
             case 2 :
                 System.out.println("You have chosen not to continue");
         }
+    }
+
+
+    public static void sort(){
+        System.out.println("\n ========================================================== sorted order based on name ==========================================================\n");
+        for (Map.Entry<String, ArrayList> entry : addressMap.entrySet()){
+            System.out.println("\nName = " + entry.getKey() +
+                    ", \n\t\t\tdetails = " + entry.getValue());}
+        System.out.println(addressMap);
 
     }
-}
+  }
+
 
