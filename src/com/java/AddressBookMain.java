@@ -13,15 +13,10 @@ public class AddressBookMain {
     static Dictionary dict = new Hashtable();
     static Dictionary stateDict = new Hashtable();
     static Dictionary cityDict = new Hashtable();
-    static List addressList = new ArrayList<>();
-    static TreeMap<String, ArrayList> addressMap = new TreeMap<>();
-
-
-
-
-
-
-
+    static TreeMap<String, ArrayList> addressMapName = new TreeMap<>();
+    static TreeMap<String, ArrayList> addressMapCity = new TreeMap<>();
+    static TreeMap<String, ArrayList> addressMapState = new TreeMap<>();
+    static TreeMap<String, ArrayList> addressMapZip = new TreeMap<>();
     static Scanner sc = new Scanner(System.in);
     static Details person1 = new Details("tom", "john", "Trivandrum", "1234", "912345678");
     static Details person2 = new Details("Anna", "Maria", "Bangalore", "1564", "923456781");
@@ -54,7 +49,7 @@ public class AddressBookMain {
                 delete(byName);
         }
         searching();
-        sort();
+        sortingData();
     }
 
     public static void savedDetails(String name) {
@@ -125,17 +120,17 @@ public class AddressBookMain {
         addressBook.add(zipCode);
         addressBook.add(mobileNumber);
         System.out.println("AddressBook " + count + " : " + addressBook);
-        nameList.add(addressBook.get(0));
-        nameList.add(addressBook.get(1));
-        map.put(addressBook, state);
+        //nameList.add(addressBook.get(0));
+       // nameList.add(addressBook.get(1));
+       // map.put(addressBook, state);
         dict.put(count, addressBook); // dictionary to add all the addressBooks
-        list.add(addressBook);
+        //list.add(addressBook);
         stateDict.put(firstName,state);
         cityDict.put(firstName,city);
-        addressMap.put(firstName,addressBook);
-
-
-
+        addressMapName.put(firstName,addressBook);
+        addressMapCity.put(city,addressBook);
+        addressMapState.put(state,addressBook);
+        addressMapZip.put(zipCode,addressBook);
     }
     public static void searching(){
         System.out.println("\nHey to know the details of people from your place, enter the name of your state /city here \n\t\t\tclick 1 : for city\n\t\t\tclick 2 : for state\n");
@@ -209,15 +204,36 @@ public class AddressBookMain {
                 System.out.println("You have chosen not to continue");
         }
     }
+    public static void sortingData() {
+        System.out.println("How do u want to sort the data ? \n\t\t\t1 : by name\n\t\t\t2 : by city\n\t\t\t3 : by state\n\t\t\t" +
+                "4 : by zip\n\t\t\t4 : sort again\n\t\t\t5 : Exit\n");
+        int option=sc.nextInt();
+        switch (option){
+            case 1 : sort(addressMapName,"Name");
+                     sortingData();
+                break;
+            case 2 : sort(addressMapCity,"City");
+                     sortingData();
+                break;
+            case 3 : sort(addressMapState,"State");
+                     sortingData();
+                break;
+            case 4 : sort(addressMapZip,"ZipCode");
+                     sortingData();
+                break;
+            case 5 :
+                System.out.println("you have chosen to exit.......bye bye");
+               // while (true){}
+        }
+    }
 
-
-    public static void sort(){
-        System.out.println("\n ========================================================== sorted order based on name ==========================================================\n");
+    public static void sort(TreeMap mapToSort,String parameter){
+        TreeMap<String, ArrayList> addressMap = mapToSort;
+        System.out.println("\n ========================================================== sorted order based on "+parameter+" ==========================================================\n");
         for (Map.Entry<String, ArrayList> entry : addressMap.entrySet()){
             System.out.println("\nName = " + entry.getKey() +
                     ", \n\t\t\tdetails = " + entry.getValue());}
         System.out.println(addressMap);
-
     }
   }
 
