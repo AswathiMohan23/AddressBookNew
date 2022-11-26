@@ -1,13 +1,16 @@
 package com.java;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class AddressBookMain {
+
+    static AddressBookWriteToFile addressBookWriteToFile=new AddressBookWriteToFile();
     static int limit;
-    static Map<ArrayList, String> map = new HashMap<>();
     static ArrayList<String> nameList = new ArrayList<>();
     static ArrayList<ArrayList> list=new ArrayList<>();
     static Dictionary dict = new Hashtable();
@@ -48,6 +51,7 @@ public class AddressBookMain {
                 byName = sc.next().toUpperCase();
                 delete(byName);
         }
+        addressBookWriteToFile.writingData(list);
         searching();
         sortingData();
     }
@@ -120,17 +124,19 @@ public class AddressBookMain {
         addressBook.add(zipCode);
         addressBook.add(mobileNumber);
         System.out.println("AddressBook " + count + " : " + addressBook);
-        //nameList.add(addressBook.get(0));
-       // nameList.add(addressBook.get(1));
+        nameList.add(addressBook.get(0));
+        nameList.add(addressBook.get(1));
        // map.put(addressBook, state);
         dict.put(count, addressBook); // dictionary to add all the addressBooks
-        //list.add(addressBook);
+        list.add(addressBook);
         stateDict.put(firstName,state);
         cityDict.put(firstName,city);
         addressMapName.put(firstName,addressBook);
         addressMapCity.put(city,addressBook);
         addressMapState.put(state,addressBook);
         addressMapZip.put(zipCode,addressBook);
+
+
     }
     public static void searching(){
         System.out.println("\nHey to know the details of people from your place, enter the name of your state /city here \n\t\t\tclick 1 : for city\n\t\t\tclick 2 : for state\n");
@@ -221,6 +227,10 @@ public class AddressBookMain {
             case 4 : sort(addressMapZip,"ZipCode");
                      sortingData();
                 break;
+            /*case 5 :
+                    writeData(list);
+                    printDataInToFile();
+                break;*/
             case 5 :
                 System.out.println("you have chosen to exit.......bye bye");
                // while (true){}
@@ -235,6 +245,8 @@ public class AddressBookMain {
                     ", \n\t\t\tdetails = " + entry.getValue());}
         System.out.println(addressMap);
     }
+
+
   }
 
 
