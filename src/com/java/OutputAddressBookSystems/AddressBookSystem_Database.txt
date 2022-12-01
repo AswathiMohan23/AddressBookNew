@@ -165,3 +165,18 @@ mysql> Select firstName from addressbook where state = 'Kerala';
     |        2 |
     +----------+
     1 row in set (0.00 sec)
+
+
+==============================================================================  UC7 ========================================================================================
+
+                                             Ability to retrieve entries sorted alphabetically by Person’s name for a given city
+                                            *************************************************************************************
+
+mysql> SELECT * FROM addressbook where state = 'Kerala' ORDER BY firstName ASC;
++----+-----------+----------+----------+--------+----------+------------+
+| id | firstName | lastName | city     | state  | zip      | phn        |
++----+-----------+----------+----------+--------+----------+------------+
+|  2 | Anna      | Ben      | kochi    | Kerala | 67900456 | 9234512376 |
+|  3 | Veena     | Madhav   | Thrissur | Kerala | 67100101 | 7170512376 |
++----+-----------+----------+----------+--------+----------+------------+
+2 rows in set (0.00 sec)
