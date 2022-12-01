@@ -1,0 +1,25 @@
+================================================================ UC1 =============================================================================
+
+								Created AddressBookSystems database
+		    					    ****************************************
+
+mysql> create database AddressBookSystems;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use AddressBookSystems;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| addressbooksystems |
+| demo               |
+| information_schema |
+| mysql              |
+| payrollservices    |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+9 rows in set (0.01 sec)
