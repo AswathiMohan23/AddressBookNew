@@ -1,7 +1,7 @@
 ================================================================ UC1 =============================================================================
 
 								Created AddressBookSystems database
-		    					    ****************************************
+		    			     ****************************************
 
 mysql> create database AddressBookSystems;
 Query OK, 1 row affected (0.01 sec)
@@ -23,3 +23,66 @@ mysql> show databases;
 | world              |
 +--------------------+
 9 rows in set (0.01 sec)
+
+============================================================================================ UC2 =============================================================================================================
+
+ CREATE TABLE addressBook(
+    ->     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    ->     firstName VARCHAR(9) NOT NULL,
+    ->     lastName VARCHAR(9) NOT NULL,
+    ->     city VARCHAR(15) NOT NULL,
+    ->     state VARCHAR(15) NOT NULL,
+    ->     zip VARCHAR(8) NOT NULL,
+    ->     phn VARCHAR(10) NOT NULL,
+    ->     PRIMARY KEY (id));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql>  Describe addressbook;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| id        | int unsigned | NO   | PRI | NULL    | auto_increment |
+| firstName | varchar(9)   | NO   |     | NULL    |                |
+| lastName  | varchar(9)   | NO   |     | NULL    |                |
+| city      | varchar(15)  | NO   |     | NULL    |                |
+| state     | varchar(15)  | NO   |     | NULL    |                |
+| zip       | varchar(8)   | NO   |     | NULL    |                |
+| phn       | varchar(10)  | NO   |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+
+
+============================================================================================== UC3 ===================================================================================================================
+
+                                                        Ability to insert new contacts to address book
+                                                       *************************************************
+
+ mysql>  INSERT INTO addressbook(FirstName,LastName,City,State,Zip,Phn)  VALUES
+     ->                                                 ('Tom','John','Bangalore','Karnataka','123456','9876544357'),
+     ->                                                 ('Anna','Ben','kochi','Kerala','67900456','9234512376'),
+     ->                                                 ('Veena','Madhav','Thrissur','Kerala','67100101','7170512376'),
+     ->                                                 ('Ravi','Varma','Trivandrum','Kerala','67900151','870512376'),
+     ->                                                 ('John','Samuel','Mysore','Karnataka','4557688','5643427919');
+ Query OK, 5 rows affected (0.01 sec)
+ Records: 5  Duplicates: 0  Warnings: 0
+
+
+ mysql> SELECT * FROM addressBook;
+ +----+-----------+----------+------------+-----------+----------+------------+
+ | id | firstName | lastName | city       | state     | zip      | phn        |
+ +----+-----------+----------+------------+-----------+----------+------------+
+ |  1 | Tom       | John     | Bangalore  | Karnataka | 123456   | 9876544357 |
+ |  2 | Anna      | Ben      | kochi      | Kerala    | 67900456 | 9234512376 |
+ |  3 | Veena     | Madhav   | Thrissur   | Kerala    | 67100101 | 7170512376 |
+ |  4 | Ravi      | Varma    | Trivandrum | Kerala    | 67900151 | 870512376  |
+ |  5 | John      | Samuel   | Mysore     | Karnataka | 4557688  | 5643427919 |
+ +----+-----------+----------+------------+-----------+----------+------------+
+ 5 rows in set (0.01 sec)
+
+
+
+
+
+
+
