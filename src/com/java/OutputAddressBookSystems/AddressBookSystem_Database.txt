@@ -144,3 +144,24 @@ mysql> Select firstName from addressbook where state = 'Kerala';
 | Veena     |
 +-----------+
 
+
+==============================================================================  UC7 ========================================================================================
+
+                                                 Ability to understand the size of address book by City and State
+                                                ******************************************************************
+
+    mysql> SELECT COUNT(*) FROM addressbook where state = 'kerala';
+    +----------+
+    | COUNT(*) |
+    +----------+
+    |        2 |
+    +----------+
+    1 row in set (0.01 sec)
+
+    mysql> SELECT COUNT(*) FROM addressbook where city = 'Bangalore';
+    +----------+
+    | COUNT(*) |
+    +----------+
+    |        2 |
+    +----------+
+    1 row in set (0.00 sec)
