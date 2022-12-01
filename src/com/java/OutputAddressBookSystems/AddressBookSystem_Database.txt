@@ -81,6 +81,26 @@ mysql>  Describe addressbook;
  5 rows in set (0.01 sec)
 
 
+ ================================================================================ UC4 =============================================================================================================
+
+                                                                    Update Contact
+                                                                  ******************
+
+mysql> update addressbook set city ='Bangalore' where firstName = 'John';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM addressBook;
++----+-----------+----------+------------+-----------+----------+------------+
+| id | firstName | lastName | city       | state     | zip      | phn        |
++----+-----------+----------+------------+-----------+----------+------------+
+|  1 | Tom       | John     | Bangalore  | Karnataka | 123456   | 9876544357 |
+|  2 | Anna      | Ben      | kochi      | Kerala    | 67900456 | 9234512376 |
+|  3 | Veena     | Madhav   | Thrissur   | Kerala    | 67100101 | 7170512376 |
+|  4 | Ravi      | Varma    | Trivandrum | Kerala    | 67900151 | 870512376  |
+|  5 | John      | Samuel   | Bangalore  | Karnataka | 4557688  | 5643427919 |
++----+-----------+----------+------------+-----------+----------+------------+
+5 rows in set (0.00 sec)
 
 
 
