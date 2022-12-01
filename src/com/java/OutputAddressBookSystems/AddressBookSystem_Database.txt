@@ -123,5 +123,24 @@ mysql> SELECT * FROM addressBook;
  4 rows in set (0.00 sec)
 
 
+======================================================================== UC6 =====================================================================
 
+                                        Ability to Retrieve Person belonging to a City or State from the Address Book
+                                      *********************************************************************************
+
+mysql> Select firstName from addressbook where city = 'Kochi';
++-----------+
+| firstName |
++-----------+
+| Anna      |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> Select firstName from addressbook where state = 'Kerala';
++-----------+
+| firstName |
++-----------+
+| Anna      |
+| Veena     |
++-----------+
 
