@@ -247,8 +247,6 @@ mysql> SELECT * FROM addressbook;
         -> Primary key(appartmentId),
         -> foreign key(appartmentId) references addressbook(id));
     Query OK, 0 rows affected (0.02 sec)
-
-
     mysql> create table profession(
         -> id INT unsigned not null Auto_Increment,
         -> profession VARCHAR(15) NOT NULL,
@@ -257,6 +255,7 @@ mysql> SELECT * FROM addressbook;
         -> primary key(id),
         -> foreign key (id) references addressbook(id));
     Query OK, 0 rows affected (0.02 sec)
+
 
     mysql> create table transportation(
         -> transportId int unsigned not null,
